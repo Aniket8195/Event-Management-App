@@ -13,11 +13,11 @@ class UserModel {
       final user = await getUserByEmail(userEmail);
       // Store the user data in the UserModel
       this.user = user;
-      print("user model fetched ");
+      //print("user model fetched ");
 
     } catch (e) {
-      // Handle errors, e.g., user not found
-      print('Error fetching user data: $e');
+      // Handle errors,e.g., user not found
+      //print('Error fetching user data: $e');
     }
   }
 
@@ -28,9 +28,9 @@ class UserModel {
       url,
       body: {'userEmail': userEmail},
     );
-    print(response.body);
+    //print(response.body);
     if (response.statusCode == 200) {
-      print('done fetch user data');
+      //print('done fetch user data');
       final Map<String, dynamic> data = json.decode(response.body);
       return User.fromJson(data);
     } else {

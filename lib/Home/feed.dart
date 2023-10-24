@@ -2,6 +2,7 @@ import 'package:eventapp/Home/check_user.dart';
 import 'package:eventapp/API/get_event.dart';
 import 'package:eventapp/Home/user_model.dart';
 import 'package:eventapp/Widgets/create_event.dart';
+import 'package:eventapp/event_detail_registration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 UserModel userModel = UserModel();
@@ -128,6 +129,7 @@ class _MainFeedState extends State<MainFeed> {
                     itemBuilder:(context,index){
                       return GestureDetector(
                         onTap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>EventDetails(event: createdEventsFeed[index])));
                         },
                         child: SizedBox(
                           width: 200,
