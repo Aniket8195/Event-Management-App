@@ -156,23 +156,24 @@ class _CreateEventState extends State<CreateEvent> {
       //     "timestamp": DateTime.now().toString(),
       //   },
       // );
-      print( titleController.text);
-      print(subjectController.text);
-      print(userModel.user!.userId);
-      print(imageUrl);
-      print(selectedDate.toString());
-      print(selectedTime.toString());
+      // print( titleController.text);
+      // print(subjectController.text);
+      // print(userModel.user!.userId);
+      // print(imageUrl);
+      // print(selectedDate.toString());
+      // print(selectedTime.toString());
       final date=selectedDate.toString().trim().substring(0, 10);
       final time="${selectedTime.hour}:${selectedTime.minute}";
-      print(date);
-      print(time);
+      // print(date);
+      // print(time);
       insertEvent(
           titleController.text,
           subjectController.text,
           userModel.user!.userId,
           imageUrl,
           date,
-          time
+          time,
+          locationController.text,
       );
     } else {
       // firestore.collection("Event Upload").doc(DateTime.now().toString()).set(
@@ -190,7 +191,8 @@ class _CreateEventState extends State<CreateEvent> {
           userModel.user!.userId,
           " ",
           selectedDate.toString().trim().substring(0, 10),
-          selectedTime.toString()
+          selectedTime.toString(),
+        locationController.text,
       );
     }
 

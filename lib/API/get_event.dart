@@ -26,6 +26,7 @@ class Event {
   final String eventTime;
   final int adminUserId;
   final String imageUrl;
+  final String location;
 
   Event({
     required this.eventId,
@@ -35,6 +36,7 @@ class Event {
     required this.eventTime,
     required this.adminUserId,
     required this.imageUrl,
+    required this.location,
   });
 
   factory Event.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,7 @@ class Event {
       eventTime: json['EventTime'],
       adminUserId: int.parse(json['AdminUserID']),
       imageUrl: json['image'] ?? " ",
+      location: json['location'] ?? " ",
     );
   }
 }

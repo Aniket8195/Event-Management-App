@@ -102,6 +102,16 @@ class _MainFeedState extends State<MainFeed> {
                                   ],
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(Icons.location_pin),
+                                    Text(allEventsFeed[index].location),
+                                  ],
+                                ),
+                              ),
                               
                             ],
                           ),
@@ -158,6 +168,20 @@ class _MainFeedState extends State<MainFeed> {
                                       const Icon(Icons.access_time_filled),
                                       Text(createdEventsFeed[index].eventTime),
                                     ],
+                                  ),
+                                ),
+
+                                Visibility(
+                                  visible: createdEventsFeed[index].location!=" ",
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const Icon(Icons.location_pin),
+                                        Text(createdEventsFeed[index].location),
+                                      ],
+                                    ),
                                   ),
                                 ),
 
