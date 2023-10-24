@@ -116,6 +116,7 @@ class _MainFeedState extends State<MainFeed> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [Text("EVENTS YOU HOSTING",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)]),
             ),
+
             Visibility(
               visible: createdEventsFeed.isNotEmpty,
               child: SizedBox(
