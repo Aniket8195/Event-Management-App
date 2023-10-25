@@ -29,12 +29,13 @@ class _MainFeedState extends State<MainFeed> {
         setState(() {
           //print(userModel.user?.email);
           print(userModel.user?.fullName);
-          print(userModel.user?.allEvents);
-          print(userModel.user?.createdEvents);
+          // print(userModel.user?.allEvents);
+          // print(userModel.user?.createdEvents);
+          print(userModel.user?.registeredEvents);
           // createdEventsFeed = userModel.user?.createdEvents ?? [];
           allEventsFeed=userModel.user?.allEvents??[];
           createdEventsFeed=userModel.user!.createdEvents;
-          print(createdEventsFeed);
+
         });
       });}
 
@@ -72,6 +73,7 @@ class _MainFeedState extends State<MainFeed> {
                   itemBuilder:(context,index){
                   return GestureDetector(
                     onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>EventDetails(event: allEventsFeed[index])));
                     },
                       child: SizedBox(
                         width: 200,
@@ -102,14 +104,17 @@ class _MainFeedState extends State<MainFeed> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Icon(Icons.location_pin),
-                                    Text(allEventsFeed[index].location),
-                                  ],
+                              Visibility(
+                                visible: allEventsFeed[index].location!=" ",
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(Icons.location_pin),
+                                      Text(allEventsFeed[index].location),
+                                    ],
+                                  ),
                                 ),
                               ),
                               

@@ -1,4 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eventapp/API/event_registration.dart';
+import 'package:eventapp/Home/feed.dart';
+import 'package:eventapp/check_registration.dart';
 import 'package:flutter/material.dart';
 import 'package:eventapp/API/get_event.dart';
 import 'package:flutter/rendering.dart';
@@ -14,11 +17,14 @@ class EventDetails extends StatefulWidget {
 
 class _EventDetailsState extends State<EventDetails> {
   bool _isVisible = true;
+  ScrollController controller = ScrollController();
+  CheckRegistration checkRegistration = CheckRegistration();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ScrollController controller = PrimaryScrollController.of(context);
+
     controller.addListener(() {
       if (controller.position.userScrollDirection == ScrollDirection.forward) {
         setState(() {
@@ -136,11 +142,19 @@ class _EventDetailsState extends State<EventDetails> {
                              borderRadius: BorderRadius.circular(8.0),
                            ),
                            backgroundColor: Colors.blueGrey,
-                           child: GestureDetector(
-                               onTap: (){
-
-                               },
-                               child: const Text("Register")),
+                           child: checkRegistration.checkR(widget.event.eventId,userModel.user!.registeredEvents) ? const Row(
+                             mainAxisAlignment: MainAxisAlignment.center,
+                               children: [
+                                 Text("Registered"),
+                                 Icon(Icons.done,color: Colors.green,)
+                               ],
+                               )
+                           :GestureDetector(
+                           onTap: (){
+                             EventReg.register(context,widget.event.eventId,userModel.user!.userId);
+                            },
+                            child:  const Text("Register"),
+                         ),
                          ),
                        ),
                      ),
