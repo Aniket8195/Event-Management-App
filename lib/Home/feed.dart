@@ -5,6 +5,8 @@ import 'package:eventapp/Widgets/create_event.dart';
 import 'package:eventapp/event_detail_registration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:eventapp/check_registration.dart';
 UserModel userModel = UserModel();
 String? mail;
 
@@ -20,7 +22,7 @@ class _MainFeedState extends State<MainFeed> {
   List<Event> createdEventsFeed = [];
   List<Event> allEventsFeed = [];
   Check c= Check();
-
+  CheckRegistration checkRegistration = CheckRegistration();
   @override
   void initState() {
     super.initState();
@@ -120,7 +122,20 @@ class _MainFeedState extends State<MainFeed> {
                                   ),
                                 ),
                               ),
-                              
+                              Visibility(
+                                  visible: checkRegistration.checkR(allEventsFeed[index].eventId,userModel.user!.registeredEvents),
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text("Registered",style: TextStyle(color: Colors.deepOrange,fontSize: 15,fontWeight: FontWeight.bold),)
+                                        ],
+                                      )
+                                    ],
+                                  )
+                              ),
                             ],
                           ),
                         ),
