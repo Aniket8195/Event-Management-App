@@ -5,7 +5,7 @@ class EventReg {
   static const hostConnect = "http://192.168.1.119/project";
   static const registerEventEndpoint = "/event_registration.php";
 
-  static void register(BuildContext context, int userID, int eventID) async {
+  static void register(BuildContext context, int userID, int eventID,Function onSuccess) async {
 
     String userIDString = userID.toString();
     String eventIDString = eventID.toString();
@@ -19,8 +19,9 @@ class EventReg {
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       showSnackBar("Registered", context, Icons.done, Colors.green);
+      onSuccess();
     } else {
       throw Exception('Failed to register for the event');
     }

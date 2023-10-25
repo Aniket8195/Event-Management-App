@@ -5,7 +5,6 @@ import 'package:eventapp/check_registration.dart';
 import 'package:flutter/material.dart';
 import 'package:eventapp/API/get_event.dart';
 import 'package:flutter/rendering.dart';
-
 import 'Widgets/full_screen.dart';
 
 class EventDetails extends StatefulWidget {
@@ -36,6 +35,13 @@ class _EventDetailsState extends State<EventDetails> {
         });
       }
     });
+  }
+  void handleRegistrationSuccess() {
+
+     userModel.fetchUserByEmail(mail!).then((_){
+       setState(() {});
+     }); // Replace with your actual fetch logic
+
   }
 
   @override
@@ -151,7 +157,7 @@ class _EventDetailsState extends State<EventDetails> {
                                )
                            :GestureDetector(
                            onTap: (){
-                             EventReg.register(context,widget.event.eventId,userModel.user!.userId);
+                             EventReg.register(context,widget.event.eventId,userModel.user!.userId ,handleRegistrationSuccess,);
                             },
                             child:  const Text("Register"),
                          ),

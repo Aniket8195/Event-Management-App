@@ -6,6 +6,8 @@ import 'package:eventapp/event_detail_registration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 UserModel userModel = UserModel();
+String? mail;
+
 class MainFeed extends StatefulWidget {
   const MainFeed({super.key});
 
@@ -25,6 +27,7 @@ class _MainFeedState extends State<MainFeed> {
     final user1 = FirebaseAuth.instance.currentUser;
     if (user1 != null) {
       c.checkUser();
+      mail=user1.email;
       userModel.fetchUserByEmail(user1.email!).then((_) {
         setState(() {
           //print(userModel.user?.email);
